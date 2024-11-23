@@ -1,4 +1,8 @@
+import Link from "next/link";
 import type { Metadata } from "next";
+import { cn } from "@/lib/utils";
+import { rubik, nunito400 } from "./fonts";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,8 +16,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={ cn(rubik.variable, nunito400.variable) }>
+      <body className="bg-lightgray">
+        <header className="px-16 bg-darkgray ">
+          <div className="flex flex-row h-32">
+            <div className="basis-1/5 content-center">
+              <nav className="flex flex-row gap-6 justify-start">
+                <Link className="font-rubik text-base text-lightgray" href="/pages/about">about</Link>
+                <Link className="font-rubik text-base text-lightgray" href="/blog">blog</Link>
+              </nav>
+            </div>
+            <div className="basis-3/5 content-center text-center">
+              <a className="font-rubik text-lightgray text-4xl">musings from munich</a>
+              <p className="font-nunito text-lightgray">
+                random thoughts about photography, coffee and food
+              </p>
+            </div>
+            <div className="basis-1/5 content-center">
+              <nav className="flex flex-row gap-6 justify-end">
+                <Link className="font-rubik text-base text-lightgray" href="/pages/contact">contact</Link>
+                <Link className="font-rubik text-base text-lightgray" href="/pages/imprint">imprint</Link>
+              </nav>
+            </div>
+          </div>
+        </header>
+        <main className="p-16">
+          <div className="flex flex-row">
+            <div className="basis-1/5"></div>
+            <div className="basis-3/5">
+              {children}
+            </div>
+            <div className="basis-1/5"></div>
+          </div>
+        </main>
+      </body>
     </html>
   );
 }
