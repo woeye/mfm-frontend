@@ -13,7 +13,7 @@ export default async function Blog() {
   // const pageIDs = data.items.reduce(function (acc, page): number[] { acc.push(page.id); return acc }, [] as number[])
   // console.log(pageIDs);
 
-  const articles = data.items as BlogPostData[]
+  const articles = data.items as BlogPostData[];
 
   return (
     <div>
@@ -35,4 +35,4 @@ export default async function Blog() {
       })}
     </div>
   );
-};
+}

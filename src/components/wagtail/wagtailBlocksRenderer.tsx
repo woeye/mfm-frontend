@@ -1,5 +1,5 @@
-import React, { Fragment } from "react"
-import { WagtailBlock } from "@/types/wagtail/blocks"
+import React, { Fragment } from "react";
+import { WagtailBlock } from "@/types/wagtail/blocks";
 import { WagtailPageData } from "@/types/wagtail/pages";
 import SubHeadline from "./blocks/subHeadline";
 import TextContent from "./blocks/textContent";
@@ -15,25 +15,25 @@ export default function WagtailBlocksRenderer(params: WagtailBlocksRendererParam
   return (
     <>
       {params.blocks.map((block) => {
-        console.log("rendering block: ", block)
-        let component: React.JSX.Element
+        console.log("rendering block: ", block);
+        let component: React.JSX.Element;
         switch (block.type) {
           case "sub_headline":
-            component = <SubHeadline pageData={params.pageData} values={block.value} />
+            component = <SubHeadline pageData={params.pageData} values={block.value} />;
             break;
           case "text_content":
-            component = <TextContent pageData={params.pageData} values={block.value} />
+            component = <TextContent pageData={params.pageData} values={block.value} />;
             break;
           case "single_image":
-            component = <SingleImage pageData={params.pageData} values={block.value} />
+            component = <SingleImage pageData={params.pageData} values={block.value} />;
             break;
           default:
-            component = <div className="bg-danger p-4">unknown component: <code>{block.type}</code></div>
+            component = <div className="bg-danger p-4">unknown component: <code>{block.type}</code></div>;
         }
         return (
           <Fragment key={block.id}>{component}</Fragment>
-        )
+        );
       })}
     </>
-  )
+  );
 }

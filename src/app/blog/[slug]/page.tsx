@@ -1,8 +1,10 @@
-import { Metadata } from "next";
-import { fetchPageData } from "@/lib/wagtail";
 import React from "react";
+import { formatDistanceToNow } from "date-fns";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import WagtailPageRenderer from "@/components/wagtail/wagtailPageRenderer";
+import { fetchPageData } from "@/lib/wagtail";
+import WagtailBlocksRenderer from "@/components/wagtail/wagtailBlocksRenderer";
+import { Clock } from "lucide-react";
 
 // type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -34,9 +36,18 @@ export default async function BlogPost({ params }: { params: Params }) {
 
   try {
       const data = await fetchPageData("home.BlogPostPage", slug);
-      console.log("got json", data)
+      const formattedDate = formatDistanceToNow(data.meta.first_published_at);
+
+      console.log("got json", data);
       return (
-          <WagtailPageRenderer pageData={data} />
+        <div>
+          <h2 className="font-rubik text-3xl">{data.title}</h2>
+          <div className="flex flex-row items-center content-stretch">
+            <Clock className="text-mediumgray mr-1" size={16} />
+            <p className="font-nunito text text-mediumgray">{formattedDate} ago</p>
+          </div>
+          <WagtailBlocksRenderer pageData={data} blocks={data.body}/>
+        </div>
       );
   } catch (error) {
       console.log("failed to fetch page JSON from CMS", error);
@@ -47,10 +58,3 @@ export default async function BlogPost({ params }: { params: Params }) {
       }
   }
 }
-
-
-// export default function BlogArticle() {
-//   return (
-//     <div>blog article</div>
-//   );
-// };

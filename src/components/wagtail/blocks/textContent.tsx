@@ -1,4 +1,4 @@
-import { TextContentValues, WagtailComponentParams } from "@/types/wagtail/blocks"
+import { TextContentValues, WagtailComponentParams } from "@/types/wagtail/blocks";
 
 export default function TextContent(params: WagtailComponentParams<TextContentValues>) {
   const values = params.values;
@@ -7,4 +7,4 @@ export default function TextContent(params: WagtailComponentParams<TextContentVa
   return (
       <div className="font-nunito mt-4" dangerouslySetInnerHTML={{ __html: values.content }} />
   );
-};
+}

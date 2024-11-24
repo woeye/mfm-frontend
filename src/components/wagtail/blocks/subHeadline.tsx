@@ -1,4 +1,4 @@
-import { SubHeadlineValues, WagtailComponentParams } from "@/types/wagtail/blocks"
+import { SubHeadlineValues, WagtailComponentParams } from "@/types/wagtail/blocks";
 
 export default function SubHeadline(params: WagtailComponentParams<SubHeadlineValues>) {
   const values = params.values;
@@ -9,4 +9,4 @@ export default function SubHeadline(params: WagtailComponentParams<SubHeadlineVa
         <h2 className="font-rubik text-xl">{values.headline}</h2>
       </div>
   );
-};
+}

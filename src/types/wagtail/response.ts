@@ -5,4 +5,4 @@ export interface QueryPagesResponse {
     total_count: number;
   };
   items: WagtailPageData[];
-};
+}

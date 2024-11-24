@@ -16,4 +16,4 @@ export default function SingleImage(params: WagtailComponentParams<SingleImageVa
         />
       </div>
   );
-};
+}

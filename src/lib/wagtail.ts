@@ -1,8 +1,8 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { WagtailPageData } from "@/types/wagtail/pages";
 import { QueryPagesResponse } from "@/types/wagtail/response";
-import { redirect } from "next/navigation"
 
 export async function fetchPageByPath(path: string): Promise<WagtailPageData> {
   // ask the CMS for the given slug
@@ -53,7 +53,7 @@ export async function fetchPageByPath(path: string): Promise<WagtailPageData> {
     // //console.log(body)
 
   });
-};
+}
 
 export async function fetchPageData(cmsType: string, slug: string) {
   // ask the CMS for the given slug
@@ -90,10 +90,10 @@ export async function fetchPageData(cmsType: string, slug: string) {
   const pageId = filterData.items[0].id;
   //console.log("fetching page by ID: ", pageId);
   return fetchPageDataById(pageId);
-};
+}
 
 export async function fetchPageDataById(pageId: number) {
-  const url = `${process.env.NEXT_PUBLIC_WAGTAIL_API}/pages/${pageId}/?format=json`
+  const url = `${process.env.NEXT_PUBLIC_WAGTAIL_API}/pages/${pageId}/?format=json`;
   console.log("fetching page details from: ", url);
   const res = await fetch(url, {
     cache: "no-cache",
@@ -109,7 +109,7 @@ export async function fetchPageDataById(pageId: number) {
   //console.log(body)
 
   return res.json();
-};
+}
 
 // export async function fetchChildren(parentPageId: number, limit: number, offset: number): Promise<FlexPageData[]> {
 //   const url = `${process.env.NEXT_PUBLIC_WAGTAIL_API}/pages/?format=json&child_of=${parentPageId}&limit=${limit}&offset=${offset}`
@@ -134,7 +134,7 @@ export async function fetchPageDataById(pageId: number) {
 
 export async function fetchBlogPosts(limit: number, offset: number): Promise<QueryPagesResponse> {
   const pageType = "home.BlogPostPage";
-  const url = `${process.env.NEXT_PUBLIC_WAGTAIL_API}/pages/?format=json&type=${pageType}&fields=body,link_image,abstract&limit=${limit}&offset=${offset}`
+  const url = `${process.env.NEXT_PUBLIC_WAGTAIL_API}/pages/?format=json&type=${pageType}&fields=body,link_image,abstract&limit=${limit}&offset=${offset}`;
   console.log("fetching pages: ", url);
   const res = await fetch(url, {
     next: { revalidate: 3600 },
@@ -146,7 +146,7 @@ export async function fetchBlogPosts(limit: number, offset: number): Promise<Que
     redirect(`/server-error?status_code=${res.status}&msg=${encodeURIComponent(res.statusText)}`);
   }
   return res.json();
-};
+}
 
 export async function fetchDocuments() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_WAGTAIL_API}/documents?format=json`, {
@@ -159,4 +159,4 @@ export async function fetchDocuments() {
   }
 
   return res.json();
-};
+}
