@@ -5,6 +5,6 @@ export default function TextContent(params: WagtailComponentParams<TextContentVa
   //const formattedDate = format(params.pageData.meta.first_published_at, "MM/yy")
 
   return (
-      <div className="font-nunito mt-4" dangerouslySetInnerHTML={{ __html: values.content }} />
+      <div className="font-sans-serif mt-4 text-darkgray" dangerouslySetInnerHTML={{ __html: values.content }} />
   );
 }

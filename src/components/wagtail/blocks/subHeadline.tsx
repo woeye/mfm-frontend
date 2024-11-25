@@ -1,3 +1,4 @@
+import Heading from "@/components/ui/heading";
 import { SubHeadlineValues, WagtailComponentParams } from "@/types/wagtail/blocks";
 
 export default function SubHeadline(params: WagtailComponentParams<SubHeadlineValues>) {
@@ -6,7 +7,7 @@ export default function SubHeadline(params: WagtailComponentParams<SubHeadlineVa
 
   return (
       <div>
-        <h2 className="font-rubik text-xl">{values.headline}</h2>
+        <Heading size="h2">{values.headline}</Heading>
       </div>
   );
 }

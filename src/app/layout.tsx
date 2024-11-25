@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
-import { rubik, nunito400 } from "./fonts";
+import { serif, sansSerif } from "./fonts";
+import Image from "next/image";
+import Divider from "./images/divider.svg";
 
 import "./globals.css";
 
@@ -16,28 +18,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={ cn(rubik.variable, nunito400.variable) }>
-      <body className="bg-lightgray">
-        <header className="px-16 bg-darkgray ">
+    <html lang="en">
+      <body className={"bg-lightgray " + cn(serif.variable, sansSerif.variable)}>
+        <header className="px-16">
           <div className="flex flex-row h-32">
             <div className="basis-1/5 content-center">
               <nav className="flex flex-row gap-6 justify-start">
-                <Link className="font-rubik text-base text-lightgray" href="/pages/about">about</Link>
-                <Link className="font-rubik text-base text-lightgray" href="/blog">blog</Link>
+                <Link className="font-serif text-base text-darkgray" href="/pages/about">about</Link>
+                <Link className="font-serif text-base text-darkgray" href="/blog">blog</Link>
               </nav>
             </div>
-            <div className="basis-3/5 content-center text-center">
-              <a className="font-rubik text-lightgray text-4xl">musings from munich</a>
-              <p className="font-nunito text-lightgray">
+            <Link className="basis-3/5 content-center text-center" href="/blog">
+              <p className="font-serif text-darkgray text-4xl">musings from munich</p>
+              <p className="font-sans-serif text-darkgray">
                 random thoughts about photography, coffee and food
               </p>
-            </div>
+            </Link>
             <div className="basis-1/5 content-center">
               <nav className="flex flex-row gap-6 justify-end">
-                <Link className="font-rubik text-base text-lightgray" href="/pages/contact">contact</Link>
-                <Link className="font-rubik text-base text-lightgray" href="/pages/imprint">imprint</Link>
+                <Link className="font-serif text-base text-darkgray" href="/pages/contact">contact</Link>
+                <Link className="font-serif text-base text-darkgray" href="/pages/imprint">imprint</Link>
               </nav>
             </div>
+          </div>
+          <div className="flex justify-center">
+            <Image
+              alt="line-divider"
+              src={Divider}
+              width={427}
+              height={20}
+            />
           </div>
         </header>
         <main className="p-16">

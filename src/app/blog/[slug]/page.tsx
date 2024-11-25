@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { fetchPageData } from "@/lib/wagtail";
 import WagtailBlocksRenderer from "@/components/wagtail/wagtailBlocksRenderer";
 import { Clock } from "lucide-react";
+import Link from "next/link";
+import Heading from "@/components/ui/heading";
 
 // type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -41,7 +43,10 @@ export default async function BlogPost({ params }: { params: Params }) {
       console.log("got json", data);
       return (
         <div>
-          <h2 className="font-rubik text-3xl">{data.title}</h2>
+          <div className="text-mediumgray text-sm mb-8">
+            <Link className="hover:text-black" href="/blog">Blog</Link> / <span>{data.title}</span>
+          </div>
+          <Heading size="h1">{data.title}</Heading>
           <div className="flex flex-row items-center content-stretch">
             <Clock className="text-mediumgray mr-1" size={16} />
             <p className="font-nunito text text-mediumgray">{formattedDate} ago</p>
